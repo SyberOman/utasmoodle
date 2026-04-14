@@ -55,8 +55,9 @@
     width: 94px;
     height: auto;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.12);
-    padding: 6px;
+    background: multiply;
+    mix-blend-mode: multiply;
+    isolation: isolate;
   }
 
   .left-panel h1 {
@@ -195,12 +196,50 @@
         Tap the button below to open Outlook and send your support request.
       </p>
 
-      <a class="btn"
-         href="ms-outlook://compose?to=LMSsupport.Nizwa@utas.edu.om&subject=moodle&body=I have a problem with the moodle.Civil ID number:">
+      <a class="btn" id="emailBtn"
+         href="mailto:LMSsupport.Nizwa@utas.edu.om?subject=moodle&body=I have a problem with the moodle.Civil ID number:">
         Open in Outlook
       </a>
       <p class="email-note">LMSsupport.Nizwa@utas.edu.om</p>
     </section>
   </main>
+  <script>
+    (function () {
+      var to = "LMSsupport.Nizwa@utas.edu.om";
+      var subject = "moodle";
+      var body = "I have a problem with the moodle.Civil ID number:";
+      var encodedTo = encodeURIComponent(to);
+      var encodedSubject = encodeURIComponent(subject);
+      var encodedBody = encodeURIComponent(body);
+      var mailtoLink = "mailto:" + to + "?subject=" + encodedSubject + "&body=" + encodedBody;
+      var iosOutlookLink = "ms-outlook://compose?to=" + encodedTo + "&subject=" + encodedSubject + "&body=" + encodedBody;
+      var webOutlookLink = "https://outlook.office.com/mail/deeplink/compose?to=" + encodedTo + "&subject=" + encodedSubject + "&body=" + encodedBody;
+      var btn = document.getElementById("emailBtn");
+
+      if (!btn) {
+        return;
+      }
+
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        var ua = navigator.userAgent || "";
+        var isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+        if (isIOS) {
+          window.location.href = iosOutlookLink;
+          setTimeout(function () {
+            window.location.href = mailtoLink;
+          }, 1200);
+          return;
+        }
+
+        window.location.href = mailtoLink;
+        setTimeout(function () {
+          window.open(webOutlookLink, "_blank");
+        }, 900);
+      });
+    })();
+  </script>
 </body>
 </html>
