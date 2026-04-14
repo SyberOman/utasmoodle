@@ -197,17 +197,31 @@
       </p>
 
       <a class="btn" id="emailBtn"
-         href="mailto:LMSsupport.Nizwa@utas.edu.om?subject=moodle&body=I have a problem with the moodle.Civil ID number:">
+         href="mailto:lmssupport.nizwa@utas.edu.om?subject=Moodle%20Login%20Issue">
         Open in Outlook
       </a>
-      <p class="email-note">LMSsupport.Nizwa@utas.edu.om</p>
+      <p class="email-note">lmssupport.nizwa@utas.edu.om</p>
     </section>
   </main>
   <script>
     (function () {
-      var to = "LMSsupport.Nizwa@utas.edu.om";
-      var subject = "moodle";
-      var body = "I have a problem with the moodle.Civil ID number:";
+      var to = "lmssupport.nizwa@utas.edu.om";
+      var subject = "Moodle Login Issue";
+      var bodyLines = [
+        "أواجه مشكلة في الدخول إلى نظام المودل الخاص بي.",
+        "رقم البطاقة المدنية: ( )",
+        "",
+        "أرجو منكم التكرم بالمساعدة في حل المشكلة في أقرب وقت ممكن.",
+        "شاكرين تعاونكم.",
+        "",
+        "",
+        "I am facing an issue logging into the Moodle system.",
+        "Civil ID Number: ( )",
+        "",
+        "Kindly assist me in resolving this issue as soon as possible.",
+        "Thank you for your cooperation."
+      ];
+      var body = bodyLines.join("\n");
       var encodedTo = encodeURIComponent(to);
       var encodedSubject = encodeURIComponent(subject);
       var encodedBody = encodeURIComponent(body);
